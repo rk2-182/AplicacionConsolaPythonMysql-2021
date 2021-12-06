@@ -14,7 +14,7 @@ class Acciones:
                     accion = int(input("Ingrese su opcion: (1 Registro o 2 Login)"))
                     if accion == 1:
                         print("Ingresando al registro...")
-                        #Clase acciones llama al metdo registro
+                        #Clase acciones llama a su propio metdo registro y estos resultados se almacenan en la variable coleccionDedatos
                         coleccionDeDatos=Acciones.__registro(self)
                         #print(coleccionDeDatos[0])
                         
@@ -23,7 +23,7 @@ class Acciones:
                         registro=usuario.registrarUsuario()
 
                         if len(registro) >=1:
-                            print("Regristro exitoso")
+                            print("Regristro exitoso de {0}".format(coleccionDeDatos[0]))
                         else:
                             print("Ha ocurrido un error")  
 
