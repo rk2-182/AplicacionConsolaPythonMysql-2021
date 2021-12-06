@@ -1,0 +1,4 @@
+Controlador MySQL escrito en Python que no depende del cliente MySQL C bibliotecas
+e implementa la especificación DB API v2.0 (PEP-249). 
+
+https://pypi.org/project/mysql-connector-python/
