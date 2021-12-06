@@ -16,16 +16,20 @@ class Acciones:
                         print("Ingresando al registro...")
                         #Clase acciones llama a su propio metdo registro y estos resultados se almacenan en la variable coleccionDedatos
                         coleccionDeDatos=Acciones.__registro(self)
-                        #print(coleccionDeDatos[0])
                         
+                        
+                        #Se instancia la clase Usuario
                         usuario = Usuario(coleccionDeDatos[0],coleccionDeDatos[1],coleccionDeDatos[2],coleccionDeDatos[3])
-
+                        #guardar resultado retornado del metodo registrarUsuario
                         registro=usuario.registrarUsuario()
 
-                        if len(registro) >=1:
+                        if registro[0]>=1:
+                            print(registro)
                             print("Regristro exitoso de {0}".format(coleccionDeDatos[0]))
+                        elif registro[0] <0:
+                            print('Registro erroneo')
                         else:
-                            print("Ha ocurrido un error")  
+                            print("Ha ocurrido un error",registro)  
 
                         break
                     elif accion == 2:

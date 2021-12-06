@@ -1,4 +1,4 @@
-#Clase modelo la cual interactua con la BD
+#Clase modelo la cual interactua con la BD (insertando,actualizando,etc)
 import datetime
 import mysql.connector
 
@@ -27,11 +27,14 @@ class Usuario:
         sql = "insert into usuarios values (null,%s,%s,%s,%s,%s)"
         usuario = (self.nombre,self.apellidos,self.email,self.password,fecha)
 
-        #Ejecutar codigo sql y remplazar los datos
-        cursor.execute(sql,usuario)
-        #confirmar cambios
-        database.commit()
+        try:
 
+            #Ejecutar codigo sql y remplazar los datos
+            cursor.execute(sql,usuario)
+            #confirmar cambios
+            database.commit()
+        except:
+            print('error, email ya registrado.')
         return [cursor.rowcount]
 
 
