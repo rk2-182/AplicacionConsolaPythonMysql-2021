@@ -1,5 +1,6 @@
 import os
 import time
+import datetime
 from usuario import Usuario 
 import getpass
 
@@ -25,7 +26,7 @@ class Acciones:
                         registro=usuario.registrarUsuario()
 
                         if registro[0]>=1:
-                            print(registro)
+                            #print(registro)
                             print("Regristro exitoso de {0}".format(coleccionDeDatos[0]))
                         elif registro[0] <0:
                             print('Registro erroneo')
@@ -35,6 +36,7 @@ class Acciones:
                         break
                     elif accion == 2:
                         print("Ingresando a Login...")
+                        #Ejecutar metodo login para buscar usuario
                         Acciones.__login(self)
                         break
                     else:
@@ -46,7 +48,7 @@ class Acciones:
                 os.system('cls')
                 self.opcion()
 
-    #metodo privado
+    #metodos privado
     def __registro(self):
         
         nombre = input("Ingresa tu Nombre: ")
@@ -56,7 +58,25 @@ class Acciones:
 
         return [nombre,apellido,email,password] #retornar una lista con los datos ingresados
 
+
     def __login(self):
-        email = input("Introduce tu email: ")
-        password = input("Introduce tu contraseña: ")
+
+        try:
+            fecha = datetime.datetime.now()
+
+            email = input("Introduce tu email: ")
+            password = input("Introduce tu contraseña: ")
+
+            usuario = Usuario('','',email,password)
+
+            login = usuario.identificarUsuario()
+
+            if email == login[3]:
+                print("Bienvenido con fecha: {0}".format(fecha))
+            else:
+                print("El usuario no existe")
+        except Exception as e:
+            print(type(e))
+            print(type(e).__name__)
+            print("Erro al logearte")
 

@@ -13,8 +13,6 @@ cursor = conexion[1]
 
 class Usuario:
 
-
-
     def __init__(self,nombre,apellidos,email,password):
         self.nombre = nombre
         self.apellidos = apellidos
@@ -22,7 +20,6 @@ class Usuario:
         self.password = password
         
        
-    
     def registrarUsuario(self):
         fecha = datetime.datetime.now()
 
@@ -45,4 +42,16 @@ class Usuario:
 
 
     def identificarUsuario(self):
-        pass
+        sql = "SELECT * FROM usuarios WHERE email = %s AND password = %s"
+
+        cifrar = hashlib.sha256()
+        cifrar.update(self.password.encode('utf-8')) #codificar a bytes
+
+        usuario = (self.email,cifrar.hexdigest())
+
+        cursor.execute(sql,usuario)
+
+        resultado = cursor.fetchone()
+
+        return resultado
+

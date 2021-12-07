@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS usuarios(
     nombre 		varchar(45),
     apellidos	varchar(45),
     email		varchar(50) not null,
-    password	varchar(50) not null,
+    password	varchar(255) not null,
     fecha		date not null,
     constraint pk_usuario primary key(id),
     constraint uq_email unique(email)
