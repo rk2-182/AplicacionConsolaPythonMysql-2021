@@ -1,6 +1,7 @@
 #Clase modelo la cual interactua con la BD (insertando,actualizando,etc)
 import datetime
 import mysql.connector
+import hashlib
 
 database = mysql.connector.connect(
     host = "localhost",
@@ -24,8 +25,13 @@ class Usuario:
     
     def registrarUsuario(self):
         fecha = datetime.datetime.now()
+        
+        cifrar = hashlib.sha256()
+        cifrar.update(self.password.encode('utf-8')) #codificar a bytes
+
+
         sql = "insert into usuarios values (null,%s,%s,%s,%s,%s)"
-        usuario = (self.nombre,self.apellidos,self.email,self.password,fecha)
+        usuario = (self.nombre,self.apellidos,self.email,cifrar.hexdigest(),fecha)
 
         try:
 

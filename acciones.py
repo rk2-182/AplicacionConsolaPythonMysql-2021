@@ -1,6 +1,7 @@
 import os
 import time
 from usuario import Usuario 
+import getpass
 
 class Acciones:
     
@@ -51,7 +52,7 @@ class Acciones:
         nombre = input("Ingresa tu Nombre: ")
         apellido = input("Ingresa tu apellido: ")
         email = input("Ingresa tu email: ")
-        password = input("Introduce tu contraseña: ")
+        password = getpass.getpass()
 
         return [nombre,apellido,email,password] #retornar una lista con los datos ingresados
 
